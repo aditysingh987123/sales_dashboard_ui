@@ -1,4 +1,5 @@
 import Badge from '../components/Badge'
+import React from "react";
 
 const rows = [
   ['E', 'Existing', 'Account Type'], ['N', 'New', 'Account Type'], ['L', 'Leasing', 'Business Opportunity We Have'], ['R', 'Renting', 'Business Opportunity We Have'], ['H', 'Hybrid', 'Business Opportunity We Have'], ['Complete', 'Complete', 'Order Status'], ['Pending', 'Pending', 'Order Status'], ['ND', 'Not Delivered', 'Delivery Status'], ['PD', 'Partial Delivered', 'Delivery Status'], ['D', 'Delivered', 'Delivery Status']
