@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import React from "react";
 
 import { Plus, RefreshCw, Search } from 'lucide-react'
 import Badge from '../components/Badge'
