@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { ShieldCheck } from 'lucide-react'
 import React from "react";
+
+import { ShieldCheck } from 'lucide-react'
 export default function LoginPage({ onLogin }) {
   const [mobile, setMobile] = useState('1234567890')
   const [otp, setOtp] = useState('1234')
