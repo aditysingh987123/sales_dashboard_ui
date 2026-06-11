@@ -1,4 +1,5 @@
 import { Eye } from 'lucide-react'
+import React from "react";
 
 const HELP_TEXT = {
   'Account Type *': 'Choose New for a fresh lead or Existing when this company is already present. Existing lets the form reuse saved company data.',
