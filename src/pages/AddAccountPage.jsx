@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+import React from "react";
+
 import { useNavigate } from 'react-router-dom'
 import { Camera, Save } from 'lucide-react'
 import { Field } from '../components/Field'
