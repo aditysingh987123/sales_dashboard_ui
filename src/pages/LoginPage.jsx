@@ -18,7 +18,6 @@ export default function LoginPage({ onLogin }) {
       <section>
         <div className="mb-6 grid h-16 w-16 place-items-center rounded-3xl bg-brand-700 text-2xl font-black text-white">C</div>
         <h1 className="text-4xl font-black tracking-tight text-slate-950 md:text-6xl">Mobile-first sales demo UI</h1>
-        <p className="mt-4 max-w-xl text-base font-medium leading-7 text-slate-600">Frontend React Vite app connected with Google Sheet through Apps Script. Demo OTP: <b>1234</b></p>
       </section>
       <form onSubmit={submit} className="card mx-auto w-full max-w-md">
         <div className="mb-6 flex items-center gap-3"><ShieldCheck className="text-brand-700"/><div><h2 className="text-2xl font-black">Login</h2><p className="text-sm text-slate-500">Demo OTP verification</p></div></div>
