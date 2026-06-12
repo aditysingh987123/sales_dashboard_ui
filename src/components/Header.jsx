@@ -3,6 +3,9 @@ import { Link, NavLink } from 'react-router-dom'
 import { LogOut, Menu, X } from 'lucide-react'
 import logo from '../assets/logo.gif'
 
+
+import { useState } from 'react'
+import React from "react";
 export default function Header({ onLogout }) {
   const [open, setOpen] = useState(false)
   const nav = [

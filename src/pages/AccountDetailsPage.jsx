@@ -1,7 +1,17 @@
+<<<<<<< HEAD
 import React, { useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Laptop, Plus, Save, Trash2 } from 'lucide-react'
 import { Field } from '../components/Field'
+=======
+import { useEffect, useMemo, useRef, useState } from 'react'
+import React from "react";
+
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { ArrowLeft, Building2, ClipboardList, Eye, Plus, Route, Save, Smartphone } from 'lucide-react'
+import Badge from '../components/Badge'
+import { Field, InfoField } from '../components/Field'
+>>>>>>> ab2da884ec55b17eb8706b3e88f527c4bd3e1324
 import DeviceForm, { createEmptyDevice, validateDevice } from '../components/DeviceForm'
 import {
   BUSINESS_OPPORTUNITIES,

@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+=======
+import { useMemo, useState } from 'react'
+import React from "react";
+
+>>>>>>> ab2da884ec55b17eb8706b3e88f527c4bd3e1324
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Camera, CheckCircle2, Laptop, MapPin, Plus, Save, Trash2, Upload } from 'lucide-react'
 import { Field } from '../components/Field'
