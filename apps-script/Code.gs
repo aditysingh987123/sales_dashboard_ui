@@ -19,7 +19,7 @@ const SHEETS = {
 }
 
 const ACCOUNT_HEADERS = [
-  'accountId','companyName','contactPerson','mobile','email','city','accountType','businessOpportunityWeHave','referredBy','hasPotential','timeForFirstOrder','expectedQtyFirstOrder','expectedQty3Months','expectedQty6Months','expectedQty9Months','expectedQty12Months','noPotentialReason','shownLeaseVsBuyCalculator','wantedProduct','mismatchPriceAmount','mismatchReason','otherReason','unknownContactName','unknownContactDesignation','unknownContactPhone','unknownContactEmail','orderStatus','trackingStatus','mainStatus','quotationSent','poSent','deliveryStatus','approvalStatus','createdDate','actualClosureDate','remarks','isFrozen','meetingPhotoUrl','updatedAt'
+  'accountId','companyName','contactPerson','mobile','email','city','accountType','businessOpportunityWeHave','referredBy','hasPotential','timeForFirstOrder','futurePotentialMonths','expectedQtyFirstOrder','expectedQty3Months','expectedQty6Months','expectedQty9Months','expectedQty12Months','noPotentialReason','shownLeaseVsBuyCalculator','wantedProduct','mismatchPriceAmount','mismatchReason','otherReason','unknownContactName','unknownContactDesignation','unknownContactPhone','unknownContactEmail','saveriskAvailable','meetingType','meetingLatitude','meetingLongitude','meetingAccuracy','meetingLocationCapturedAt','meetingAddress','meetingAddressNote','orderStatus','trackingStatus','mainStatus','quotationSent','poSent','deliveryStatus','approvalStatus','createdDate','actualClosureDate','remarks','isFrozen','meetingPhotoUrl','updatedAt'
 ]
 
 const DEVICE_HEADERS = ['deviceId','accountId','deviceType','condition','brand','processorBrand','processor','generation','ram','storage','graphicCard','quantity','lockInMonths','pricePerMonth','excludingGst','deliveryStatus']
@@ -66,18 +66,35 @@ function setupSheets_() {
 function ensureSheet_(ss, name, headers) {
   let sh = ss.getSheetByName(name)
   if (!sh) sh = ss.insertSheet(name)
-  const row = sh.getRange(1, 1, 1, headers.length).getValues()[0]
-  if (row.join('') === '') sh.getRange(1, 1, 1, headers.length).setValues([headers])
+  const lastColumn = Math.max(sh.getLastColumn(), headers.length)
+  const row = sh.getRange(1, 1, 1, lastColumn).getValues()[0]
+  if (row.join('') === '') {
+    sh.getRange(1, 1, 1, headers.length).setValues([headers])
+  } else {
+    const existingHeaders = row.map(String).filter(Boolean)
+    const missingHeaders = headers.filter(h => existingHeaders.indexOf(h) === -1)
+    if (missingHeaders.length) {
+      sh.getRange(1, existingHeaders.length + 1, 1, missingHeaders.length).setValues([missingHeaders])
+    }
+  }
   sh.setFrozenRows(1)
+}
+
+function getSheetHeaders_(sh, fallbackHeaders) {
+  const lastColumn = Math.max(sh.getLastColumn(), fallbackHeaders.length)
+  const row = sh.getRange(1, 1, 1, lastColumn).getValues()[0].map(String)
+  const actualHeaders = row.filter(Boolean)
+  return actualHeaders.length ? actualHeaders : fallbackHeaders
 }
 
 function readObjects_(sheetName, headers) {
   const sh = ss_().getSheetByName(sheetName)
   const values = sh.getDataRange().getValues()
   if (values.length <= 1) return []
+  const actualHeaders = getSheetHeaders_(sh, headers)
   return values.slice(1).filter(r => r[0]).map(row => {
     const o = {}
-    headers.forEach((h, i) => o[h] = row[i])
+    actualHeaders.forEach((h, i) => o[h] = row[i])
     return o
   })
 }
@@ -85,20 +102,22 @@ function readObjects_(sheetName, headers) {
 function upsert_(sheetName, headers, key, obj) {
   const sh = ss_().getSheetByName(sheetName)
   const values = sh.getDataRange().getValues()
-  const keyIndex = headers.indexOf(key)
+  const actualHeaders = getSheetHeaders_(sh, headers)
+  const keyIndex = actualHeaders.indexOf(key)
   let rowNumber = -1
   for (let i = 1; i < values.length; i++) {
     if (String(values[i][keyIndex]) === String(obj[key])) { rowNumber = i + 1; break }
   }
-  const row = headers.map(h => obj[h] === undefined ? '' : obj[h])
-  if (rowNumber > 0) sh.getRange(rowNumber, 1, 1, headers.length).setValues([row])
+  const row = actualHeaders.map(h => obj[h] === undefined ? '' : obj[h])
+  if (rowNumber > 0) sh.getRange(rowNumber, 1, 1, actualHeaders.length).setValues([row])
   else sh.appendRow(row)
 }
 
 function deleteRowsByKey_(sheetName, headers, key, value) {
   const sh = ss_().getSheetByName(sheetName)
   const data = sh.getDataRange().getValues()
-  const idx = headers.indexOf(key)
+  const actualHeaders = getSheetHeaders_(sh, headers)
+  const idx = actualHeaders.indexOf(key)
   for (let i = data.length - 1; i >= 1; i--) {
     if (String(data[i][idx]) === String(value)) sh.deleteRow(i + 1)
   }

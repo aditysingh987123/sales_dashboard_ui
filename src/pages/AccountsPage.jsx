@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { Plus, RefreshCw, Search } from 'lucide-react'
 import Badge from '../components/Badge'
 import { BUSINESS_OPPORTUNITIES, DELIVERY_STATUSES } from '../data/constants'

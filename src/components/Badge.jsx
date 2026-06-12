@@ -1,3 +1,6 @@
+import React from "react";
+
+
 const MAP = {
   E: 'bg-blue-50 text-blue-700 border-blue-100',
   N: 'bg-purple-50 text-purple-700 border-purple-100',

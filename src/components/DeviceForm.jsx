@@ -1,4 +1,6 @@
 import { Field } from './Field'
+import React from "react";
+
 import {
   AMD_GENERATIONS,
   AMD_PROCESSORS,

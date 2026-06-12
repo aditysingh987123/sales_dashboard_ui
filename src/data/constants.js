@@ -1,13 +1,14 @@
-export const ACCOUNT_TYPES = [
-  { code: 'E', label: 'Existing' },
-  { code: 'N', label: 'New' },
-]
-
 export const BUSINESS_OPPORTUNITIES = [
   { code: 'L', label: 'Leasing' },
   { code: 'R', label: 'Renting' },
   { code: 'H', label: 'Hybrid' },
-  { code: 'UNKNOWN', label: "This contact don't know" },
+  { code: 'UNKNOWN', label: 'Contact person is not a decision maker' },
+]
+
+export const POTENTIAL_OPTIONS = [
+  { code: 'IMMEDIATE', label: 'Yes, Immediate opportunity' },
+  { code: 'FUTURE', label: 'Yes, future potentials' },
+  { code: 'NO', label: 'No, Business for C Prompt' },
 ]
 
 export const ORDER_STATUSES = ['Pending', 'Complete']
@@ -35,9 +36,9 @@ export const TIME_FOR_FIRST_ORDER = [
 ]
 
 export const NO_POTENTIAL_REASONS = [
-  'They buy',
+  'Company Buy',
   'No Requirement',
-  "We don't offer the product",
+  "C Prompt does not offer the product",
   'Price mismatch',
   'Others',
 ]
