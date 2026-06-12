@@ -5,7 +5,6 @@ import logo from '../assets/logo.gif'
 
 
 import { useState } from 'react'
-import React from "react";
 export default function Header({ onLogout }) {
   const [open, setOpen] = useState(false)
   const nav = [
