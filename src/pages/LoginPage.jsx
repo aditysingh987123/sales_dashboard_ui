@@ -14,7 +14,7 @@ export default function LoginPage({ onLogin }) {
     onLogin()
   }
   return <main className="min-h-screen bg-gradient-to-br from-brand-50 via-white to-slate-100 p-4">
-    <div className="mx-auto grid min-h-screen max-w-6xl items-center gap-8 md:grid-cols-2">
+    <div className="mx-auto grid min-h-screen max-w-6xl items-center gap-4 md:grid-cols-2">
       <section>
         <div className="mb-6 grid h-16 w-16 place-items-center rounded-3xl bg-brand-700 text-2xl font-black text-white">C</div>
         <h1 className="text-4xl font-black tracking-tight text-slate-950 md:text-6xl">Mobile-first sales demo UI</h1>
